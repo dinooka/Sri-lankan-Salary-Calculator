@@ -18,9 +18,8 @@ function inputValidation(basicSalary) {
       "As per SL labour law, monthly basic salary should be greater than 30,000!!!",
     );
     return false;
-  } else {
-    return true;
   }
+  return true;
 }
 
 function calcEpf() {
