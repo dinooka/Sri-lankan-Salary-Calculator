@@ -28,6 +28,12 @@ function calcEpf(){
     return ((basicSalary - internetAllowance)*0.08).toFixed(2);
 }
 
+function calcTax(){
+    
+}
+
+
+
 function proceed(){
     if(!inputValidation(basicSalary)){
         return;
