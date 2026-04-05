@@ -1,15 +1,43 @@
 import promptSync from "prompt-sync";
+
 const internetAllowance = 2000.0;
 const welfare = 0.0; // eClubContribution 1500.00
 const STAMP_DUTY = 25.0; // Govt. imposed
-
-let basicSalary, tax, epf;
+const width = 35;
+let basicSalary,
+  lumpsumEligibility,
+  lumpsumWithoutTax = 0,
+  lumpsumAmount = 0,
+  tax,
+  epf,
+  annualIncome,
+  lumpsumTax = 0;
 
 const prompt = promptSync();
-basicSalary = Number(prompt("Enter the basic salary : "));
-basicSalary = basicSalary.toFixed(2);
 
-function inputValidation(basicSalary) {
+function userInputs() {
+  basicSalary = Number(prompt("Enter your monthly salary : "));
+  basicSalary = basicSalary.toFixed(2);
+
+  if (!inputValidationforSalary(basicSalary)) {
+    return;
+  }
+
+  lumpsumEligibility = prompt(
+    "Are you eligible for a lump sum payment ? Type (Y/N)",
+  );
+
+  inputValidationForBonus(lumpsumEligibility);
+  printPaySlip();
+}
+
+function inputValidationForBonus(input) {
+  if (input === "Y" || input === "y") {
+    calcLumpSumTax();
+  }
+}
+
+function inputValidationforSalary(basicSalary) {
   if (basicSalary <= 0) {
     console.log("Salary can't be a negative value!");
     return false;
@@ -46,24 +74,80 @@ function calcTax(basicSalary, rate, k) {
   return (basicSalary * rate - k).toFixed(2);
 }
 
-function printPaySlip() {
-  if (!inputValidation(basicSalary)) {
-    return;
+function calcLumpSumTax() {
+  lumpsumWithoutTax = Number(prompt("Enter the lump sum amount : "));
+  lumpsumWithoutTax = Number(lumpsumWithoutTax.toFixed(2));
+
+  annualIncome = (basicSalary * 12).toFixed(2);
+  let total = Number(annualIncome) + Number(lumpsumWithoutTax);
+
+  if (total <= 1800000) {
+    lumpsumTax = 0;
+  } else if (total > 1800000 && total <= 2800000) {
+    lumpsumTax = lumpsumWithoutTax * 0.06;
+  } else if (total > 2800000 && total <= 3300000) {
+    lumpsumTax = lumpsumWithoutTax * 0.18;
+  } else if (total > 3300000 && total <= 3800000) {
+    lumpsumTax = lumpsumWithoutTax * 0.24;
+  } else if (total > 3800000 && total <= 4300000) {
+    lumpsumTax = lumpsumWithoutTax * 0.3;
+  } else if (total > 4300000) {
+    lumpsumTax = lumpsumWithoutTax * 0.36;
   }
+
+  lumpsumAmount = Number(lumpsumWithoutTax) - Number(lumpsumTax);
+}
+
+function printPaySlip() {
+  let totalEarning = (Number(basicSalary) + Number(lumpsumWithoutTax)).toFixed(
+    2,
+  );
+
   epf = calcEpf();
-  console.log(`Internet Allowance = ${internetAllowance}`);
-  console.log(`EPF Deduction\t = ${epf}`);
   tax = taxTable(basicSalary);
-  console.log(`Tax Deduction\t = ${tax}`);
-  console.log(`Stamp Duty\t = ${STAMP_DUTY}`);
-  console.log(`Welfare\t\t = ${welfare}`);
   let netSalary =
     basicSalary -
-    (Number(epf) + Number(tax) + Number(STAMP_DUTY) + Number(welfare));
-  console.log(`\n\nNet Salary \t = ${netSalary.toFixed(2)}\n`);
+    (Number(epf) + Number(tax) + Number(STAMP_DUTY) + Number(welfare)) +
+    Number(lumpsumAmount);
+  netSalary = netSalary.toFixed(2);
+
+  let totalTax = Number(lumpsumTax) + Number(tax);
+
+  const earnings = {
+    "Gross Salary(including allowances)": basicSalary,
+    "Internet Allowance": internetAllowance.toFixed(2),
+    "Total Lumpsum ": lumpsumWithoutTax.toFixed(2),
+    "Total Earnings ": totalEarning,
+  };
+  console.log("\nEARNINGS\n");
+  const valueWidth = Math.max(...Object.values(earnings).map((v) => v.length));
+  for (const key in earnings) {
+    const value = earnings[key];
+    const alignedValue = " ".repeat(valueWidth - value.length) + value;
+    console.log(key.padEnd(width) + " = " + alignedValue);
+  }
+
+  let totalDeductions =
+    Number(totalTax) + Number(STAMP_DUTY) + Number(epf) + Number(welfare);
+
+  const deductions = {
+    "Personal Income Tax": tax,
+    "Lump Sum Tax": lumpsumTax.toFixed(2),
+    "Total Tax": totalTax.toFixed(2),
+    "Stamp Duty": STAMP_DUTY.toFixed(2),
+    "EPF Employee Contribution": epf,
+    Welfare: welfare.toFixed(2),
+    "Total Deduction": totalDeductions.toFixed(2),
+    "Net Salary": netSalary,
+  };
+  console.log("\nDEDUCTIONS\n");
+  for (const key in deductions) {
+    const value = deductions[key];
+    const alignedValue = " ".repeat(valueWidth - value.length) + value;
+    console.log(key.padEnd(width) + " = " + alignedValue);
+  }
 }
 
 // Invoke functions after this line
 // ------------------------------------------------------------------------
-
-printPaySlip();
+userInputs();
