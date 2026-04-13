@@ -44,13 +44,10 @@ export function calcLumpSumTax(lumpsumWithoutTax, basicSalary) {
   } else if (total > 4300000) {
     lumpsumTax = lumpsumWithoutTax * 0.36;
   }
-
-  // lumpsumAmount = Number(lumpsumWithoutTax - Number(lumpsumTax.toFixed(2)));
   return lumpsumTax;
 }
 
 export function calcTotalEarnings(basicSalary, lumpsumWithoutTax) {
-  // lumpsumAmount = lumpsumWithoutTax - lumpsumTax;
   return (Number(basicSalary) + Number(lumpsumWithoutTax)).toFixed(2);
 }
 
