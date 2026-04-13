@@ -3,5 +3,8 @@
   "dependencies": {
     "editorconfig": "^3.0.2",
     "prompt-sync": "^4.2.0"
+  },
+  "devDependencies": {
+    "eslint": "^10.2.0"
   }
 }
