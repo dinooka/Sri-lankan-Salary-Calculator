@@ -17,7 +17,7 @@ export function taxAmount(grossSalary) {
     return calcSalaryTax(grossSalary, 0.24, 642000 / 12);
   } else if (grossSalary >= 316667 && grossSalary <= 358333) {
     return calcSalaryTax(grossSalary, 0.3, 870000 / 12);
-  } else if (grossSalary > 358334) {
+  } else if (grossSalary >= 358334) {
     return calcSalaryTax(grossSalary, 0.36, 1128000 / 12);
   }
 }

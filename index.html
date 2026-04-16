@@ -1,20 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Employee Salary Calculator</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
+
 <body style="background-color: rgb(16, 99, 72);">
-<p>first para</p>
-<form action="inputs">
-    <label for="Salary">Enter the monthly basic salary </label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <input type="number" name="basic-salary" id="basic-salary"><br><br>
-    <label for="Salary">Enter Allowances(if applicable only) </label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <input type="number" name="allowance" id="allowance"><br><br>
-    <label for="Salary">Enter any other contributions(societies/clubs/welfare) </label> &nbsp;&nbsp;
-    <input type="number" name="welfare" id="welfare"><br><br>
-</form>
+    <h2>Employee Monthly Salary Calculator</h2>
+    <h4>Calculates net salary considering EPF and tax deductions on both monthly salary and lump-sum payments.</h4>
+    <br><br>
+    <script src="app.js"></script>
+    <form action="inputs">
+        <div class="form-group">
+            <label for="Salary">Monthly basic salary </label>
+            <input type="number" name="basic-salary" id="basic-salary"><br><br>
+        </div>
+        <div class="form-group">
+            <label for="Salary">Allowances(if applicable only) </label>
+            <input type="number" name="allowance" id="allowance"><br><br>
+        </div>
+        <div class="form-group">
+            <label for="Salary">Contributions(societies/clubs/welfare) </label>
+            <input type="number" name="welfare" id="welfare"><br><br>
+        </div>
+        <div class="form-group">
+            <label for="confirmation">Lump sum payment eligibility</label>
+            <select name="confirmation" id="confirmation" onchange="displayConditionalInput()">
+                <option value="yes">Yes</option>
+                <option value="no" selected>No</option>
+            </select>
+            <br><br>
+        </div>
+        <div id="hidden-input" class="hidden">
+            <label for="Salary">Lump sum amount </label>
+            <input type="number" name="lumpsum" id="lumpsum"><br><br>
+        </div><br><br>
+        <div class="form-group">
+            <button type="submit" name="calulate" id="calulate">Calculate</button>
+        </div>
+        <div class="form-group">
+            <button type="button" name="reset" id="reset">Reset</button><br><br>
+        </div>
+    </form>
 
 </body>
+
 </html>
