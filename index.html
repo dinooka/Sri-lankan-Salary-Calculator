@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="en">
-  <head style="background-color: brown">
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Employee Salary Calculator</title>
@@ -15,37 +15,38 @@
         salary and lump-sum payments.
       </h4>
     </div>
+
     <script src="app.js" defer></script>
     <form action="inputs" id="my-form">
       <div class="form-group">
-        <label for="Salary">Monthly basic salary </label>
+        <label for="Salary">Monthly basic salary</label>
         <input
-          type="number"
-          name="basic-salary"
+          type="text"
           class="numeric-only"
           id="basic-salary"
+          maxlength="12"
           min="0"
           required
         />
       </div>
       <div class="form-group">
-        <label for="Salary">Allowances(if applicable only) </label>
+        <label for="Salary">Allowances</label>
         <input
-          type="number"
-          name="allowance"
+          type="text"
           class="numeric-only"
           id="allowance"
           min="0"
+          maxlength="12"
         />
       </div>
       <div class="form-group">
         <label for="Salary">Contributions(societies/clubs/welfare) </label>
         <input
-          type="number"
-          name="welfare"
+          type="text"
           class="numeric-only"
           id="welfare"
           min="0"
+          maxlength="12"
         />
       </div>
       <div class="form-group">
@@ -58,16 +59,16 @@
       <div id="hidden-input" class="hidden">
         <label for="Salary">Lump sum amount </label>
         <input
-          type="number"
-          name="lumpsum"
+          type="text"
           class="numeric-only"
           id="lumpsum"
           min="0"
+          maxlength="12"
         />
       </div>
       <div class="button-row">
-        <button type="button" name="calulate" id="calulate">Calculate</button>
-        <button type="reset" name="reset" id="reset">Reset</button>
+        <button type="button" id="calulate">Calculate</button>
+        <button type="reset" id="reset">Reset</button>
       </div>
       <p id="earnings" class="hidden-text"></p>
       <div id="payslip"></div>

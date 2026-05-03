@@ -26,11 +26,8 @@ export function printPaySlipToHtml(results, title) {
 
   for (const key in results) {
     const num = Number(results[key]);
-
     if (num === 0) continue;
-
     const value = num.toFixed(2);
-
     sectionHTML += `
       <tr>
         <td>${key}</td>
@@ -40,6 +37,5 @@ export function printPaySlipToHtml(results, title) {
   }
 
   sectionHTML += `</table>`;
-
   container.innerHTML += sectionHTML;
 }
