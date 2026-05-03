@@ -21,7 +21,6 @@ document.addEventListener("DOMContentLoaded", function () {
     setTimeout(() => {
       displayConditionalInput();
     }, 0);
-    // inlineText.style.display = "none";
     container.innerHTML += "";
   });
 });
