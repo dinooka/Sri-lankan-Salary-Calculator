@@ -21,16 +21,3 @@ export function inputValidationforNumber(amount) {
   }
   return true;
 }
-
-// export function isYesOrNo(input) {
-//   if (input === "Y" || input === "y") {
-//     let lumpsumWithoutTax = Number(
-//       prompt("Enter the lump sum amount" + "\t".repeat(4) + ": "),
-//     );
-//     if (inputValidationforNumber(lumpsumWithoutTax)) {
-//       return lumpsumWithoutTax;
-//     }
-//     return 0;
-//   }
-//   return 0;
-// }
