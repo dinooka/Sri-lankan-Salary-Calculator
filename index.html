@@ -1,49 +1,76 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Employee Salary Calculator</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
 
-<body style="background-color: rgb(21, 107, 78);">
+  <body style="background-color: rgb(21, 107, 78)">
     <h2>Employee Monthly Salary Calculator</h2>
-    <h4>Calculates net salary considering EPF and tax deductions on both monthly salary and lump-sum payments.</h4>
-    <br><br>
+    <h4>
+      Calculates net salary considering EPF and tax deductions on both monthly
+      salary and lump-sum payments.
+    </h4>
+    <br /><br />
     <script src="app.js" defer></script>
     <form action="inputs" id="my-form">
-        <div class="form-group">
-            <label for="Salary">Monthly basic salary </label>
-            <input type="number" name="basic-salary" id="basic-salary" min="0" required>
-        </div>
-        <div class="form-group">
-            <label for="Salary">Allowances(if applicable only) </label>
-            <input type="number" name="allowance" id="allowance" min="0">
-        </div>
-        <div class="form-group">
-            <label for="Salary">Contributions(societies/clubs/welfare) </label>
-            <input type="number" name="welfare" id="welfare" min="0">
-        </div>
-        <div class="form-group">
-            <label for="confirmation">Lump sum payment eligibility</label>
-            <select name="confirmation" id="confirmation">
-                <option value="yes">Yes</option>
-                <option value="no" selected>No</option>
-            </select>
-        </div>
-        <div id="hidden-input" class="hidden">
-            <label for="Salary">Lump sum amount </label>
-            <input type="number" name="lumpsum" id="lumpsum" min="0">
-        </div>
-        <div class="button-row">
-            <button type="button" name="calulate" id="calulate">Calculate</button>
-            <button type="reset" name="reset" id="reset">Reset</button>
-        </div>
-        <p id="inlineText" class="hidden-text"></p>
+      <div class="form-group">
+        <label for="Salary">Monthly basic salary </label>
+        <input
+          type="number"
+          name="basic-salary"
+          class="numeric-only"
+          id="basic-salary"
+          min="0"
+          required
+        />
+      </div>
+      <div class="form-group">
+        <label for="Salary">Allowances(if applicable only) </label>
+        <input
+          type="number"
+          name="allowance"
+          class="numeric-only"
+          id="allowance"
+          min="0"
+        />
+      </div>
+      <div class="form-group">
+        <label for="Salary">Contributions(societies/clubs/welfare) </label>
+        <input
+          type="number"
+          name="welfare"
+          class="numeric-only"
+          id="welfare"
+          min="0"
+        />
+      </div>
+      <div class="form-group">
+        <label for="confirmation">Lump sum payment eligibility</label>
+        <select name="confirmation" id="confirmation">
+          <option value="yes">Yes</option>
+          <option value="no" selected>No</option>
+        </select>
+      </div>
+      <div id="hidden-input" class="hidden">
+        <label for="Salary">Lump sum amount </label>
+        <input
+          type="number"
+          name="lumpsum"
+          class="numeric-only"
+          id="lumpsum"
+          min="0"
+        />
+      </div>
+      <div class="button-row">
+        <button type="button" name="calulate" id="calulate">Calculate</button>
+        <button type="reset" name="reset" id="reset">Reset</button>
+      </div>
+      <p id="earnings" class="hidden-text"></p>
+      <div id="payslip"></div>
     </form>
-    <script type="module" src="/program/main.js"></script>
-</body>
-
+    <script type="module" src="./program/main.js"></script>
+  </body>
 </html>

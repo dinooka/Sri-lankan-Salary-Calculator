@@ -2,7 +2,7 @@ const form = document.getElementById("my-form");
 const confirmation = document.getElementById("confirmation");
 const hiddenField = document.getElementById("hidden-input");
 const calculate = document.getElementById("calulate");
-const inlineText = document.getElementById("inlineText");
+const container = document.getElementById("payslip");
 
 function displayConditionalInput() {
   if (confirmation.value === "yes") {
@@ -21,11 +21,7 @@ document.addEventListener("DOMContentLoaded", function () {
     setTimeout(() => {
       displayConditionalInput();
     }, 0);
-    inlineText.style.display = "none";
+    // inlineText.style.display = "none";
+    container.innerHTML += "";
   });
-
-  calculate.addEventListener("click", function () {
-    inlineText.textContent = "This is the inline text message";
-    inlineText.style.display = "inline";
-  })
 });

@@ -1,6 +1,4 @@
-// import promptSync from "prompt-sync";
 import {
-  isYesOrNo,
   inputValidationforSalary,
   inputValidationforNumber,
 } from "./validations.js";
@@ -16,65 +14,92 @@ import {
   calcNetSalary,
 } from "./calulations.js";
 
-import { printPaySlip } from "./printresults.js";
+import { printPaySlip, printPaySlipToHtml } from "./printresults.js";
 
 const STAMP_DUTY = 25.0; // Govt. imposed
 const width = 35;
-let basicSalary,
-  allowance = 0,
-  welfare = 0, // eClubContribution 1500.00
-  lumpsumEligibility,
-  lumpsumWithoutTax = 0,
+let lumpsumEligibility,
   taxAmountForGrossSalary = 0,
   epf,
   grossSalary = 0,
   lumpsumTax = 0;
+let basicSalary = 0,
+  allowance = 0,
+  welfare = 0,
+  lumpsumWithoutTax = 0;
 
+const inputs = document.querySelectorAll(".numeric-only");
+const basicSalaryElement = document.getElementById("basic-salary");
+const allowanceElement = document.getElementById("allowance");
+const welfareElement = document.getElementById("welfare");
+const lumpsumWithoutTaxElement = document.getElementById("lumpsum");
+const calculate = document.getElementById("calulate");
+const earningsText = document.getElementById("earnings");
+const earningsDetails = document.getElementById("earnings-values");
+const container = document.getElementById("payslip");
 
-document.getElementById('calulate').addEventListener('click', () => {
+document.addEventListener("DOMContentLoaded", function () {
+  inputs.forEach((input) => {
+    input.addEventListener("keydown", function (e) {
+      // ✅ allow Ctrl/Cmd shortcuts (copy, paste, cut, select all)
+      if (e.ctrlKey || e.metaKey) {
+        return;
+      }
+      const allowedKeys = [
+        "Backspace",
+        "Delete",
+        "ArrowLeft",
+        "ArrowRight",
+        "Tab",
+      ];
 
-    basicSalary = Number(document.getElementById('basic-salary').value);
-    allowance = Number(document.getElementById('allowance').value);
-    welfare = Number(document.getElementById('welfare').value);
-    lumpsumWithoutTax = Number(document.getElementById('lumpsum').value);
+      if (allowedKeys.includes(e.key)) return;
+      // allow digits
+      if (/^\d$/.test(e.key)) return;
 
+      // allow ONE decimal point
+      if (e.key === "." && !this.value.includes(".")) return;
 
-    // 2. Perform your logic (example of using the imports)
-    // Replace this with your actual CLI calculation logic
-        if (userInputs()) {
-          calculations();
-        }
+      e.preventDefault();
+    });
+    // ✅ paste validation (ONLY allow valid numbers)
+    input.addEventListener("paste", function (e) {
+      const pasteData = e.clipboardData.getData("text").trim();
+
+      // allow: 123, 123.45, 0.5
+      const isValidNumber = /^\d+(\.\d+)?$/.test(pasteData);
+
+      if (!isValidNumber) {
+        e.preventDefault();
+      }
+    });
+  });
+  calculate.addEventListener("click", function () {
+    container.innerHTML = "";
+    basicSalary = Number(basicSalaryElement.value);
+    allowance = Number(allowanceElement.value);
+    welfare = Number(welfareElement.value);
+    lumpsumWithoutTax = Number(lumpsumWithoutTaxElement.value);
+    console.log("Gross Salary = ", basicSalary);
+    if (userInputs()) {
+      calculations();
+    }
+  });
 });
 
-
-
 function userInputs() {
-  // basicSalary = Number(
-  //   prompt("Enter the monthly basic salary" + "\t".repeat(4) + ": "),
-  // );
   if (!inputValidationforSalary(basicSalary)) {
     return;
   }
 
-  // allowance = Number(
-  //   prompt("Enter Allowances(if applicable only)" + "\t".repeat(3) + ": "),
-  // );
   if (!inputValidationforNumber(allowance)) {
     return;
   }
 
-  // welfare = Number(
-  //   prompt("Enter any other contributions(societies/clubs/welfare) \t: "),
-  // );
   if (!inputValidationforNumber(welfare)) {
     return;
   }
 
-  // lumpsumEligibility = prompt(
-  //   `Are you eligible for a lump sum payment ? Type (Y/N) \t: `,
-  // );
-
-  // lumpsumWithoutTax = isYesOrNo(lumpsumEligibility);
   return true;
 }
 
@@ -96,7 +121,9 @@ function calculations() {
   };
 
   console.log("\nEARNINGS\n");
+  // earningsText.innerText = `\nEARNINGS\n`;
   printPaySlip(earnings);
+  printPaySlipToHtml(earnings, "EARNINGS");
 
   const deductions = {
     "Personal Income Tax": taxAmountForGrossSalary.toFixed(2),
@@ -110,8 +137,5 @@ function calculations() {
   };
   console.log("\nDEDUCTIONS\n");
   printPaySlip(deductions);
+  printPaySlipToHtml(deductions, "DEDUCTIONS");
 }
-
-// if (userInputs()) {
-//   calculations();
-// }
