@@ -22,6 +22,6 @@ document.addEventListener("DOMContentLoaded", function () {
     setTimeout(() => {
       displayConditionalInput();
     }, 0);
-    container.innerHTML += "";
+    // container.classList.remove("hidden");
   });
 });
