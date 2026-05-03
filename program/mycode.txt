@@ -1,0 +1,27 @@
+
+// Importing your existing logic files
+import { functionOne } from './file1.js';
+import { functionTwo } from './file2.js';
+import { functionThree } from './file3.js';
+
+document.getElementById('submitBtn').addEventListener('click', () => {
+    // 1. Grab values from the UI
+    const val1 = parseFloat(document.getElementById('field1').value);
+    const val2 = parseFloat(document.getElementById('field2').value);
+    const val3 = parseFloat(document.getElementById('field3').value);
+    const val4 = parseFloat(document.getElementById('field4').value);
+
+    // 2. Perform your logic (example of using the imports)
+    // Replace this with your actual CLI calculation logic
+    try {
+        const intermediate = functionOne(val1, val2);
+        const secondStep = functionTwo(intermediate, val3);
+        const finalOutput = functionThree(secondStep, val4);
+
+        // 3. Display the output
+        document.getElementById('result').innerText = `Output: ${finalOutput}`;
+    } catch (error) {
+        document.getElementById('result').innerText = "Error in calculation.";
+        console.error(error);
+    }
+});

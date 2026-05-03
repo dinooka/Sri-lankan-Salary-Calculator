@@ -8,44 +8,42 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 
-<body style="background-color: rgb(16, 99, 72);">
+<body style="background-color: rgb(21, 107, 78);">
     <h2>Employee Monthly Salary Calculator</h2>
     <h4>Calculates net salary considering EPF and tax deductions on both monthly salary and lump-sum payments.</h4>
     <br><br>
-    <script src="app.js"></script>
-    <form action="inputs">
+    <script src="app.js" defer></script>
+    <form action="inputs" id="my-form">
         <div class="form-group">
             <label for="Salary">Monthly basic salary </label>
-            <input type="number" name="basic-salary" id="basic-salary"><br><br>
+            <input type="number" name="basic-salary" id="basic-salary" min="0" required>
         </div>
         <div class="form-group">
             <label for="Salary">Allowances(if applicable only) </label>
-            <input type="number" name="allowance" id="allowance"><br><br>
+            <input type="number" name="allowance" id="allowance" min="0">
         </div>
         <div class="form-group">
             <label for="Salary">Contributions(societies/clubs/welfare) </label>
-            <input type="number" name="welfare" id="welfare"><br><br>
+            <input type="number" name="welfare" id="welfare" min="0">
         </div>
         <div class="form-group">
             <label for="confirmation">Lump sum payment eligibility</label>
-            <select name="confirmation" id="confirmation" onchange="displayConditionalInput()">
+            <select name="confirmation" id="confirmation">
                 <option value="yes">Yes</option>
                 <option value="no" selected>No</option>
             </select>
-            <br><br>
         </div>
         <div id="hidden-input" class="hidden">
             <label for="Salary">Lump sum amount </label>
-            <input type="number" name="lumpsum" id="lumpsum"><br><br>
-        </div><br><br>
-        <div class="form-group">
-            <button type="submit" name="calulate" id="calulate">Calculate</button>
+            <input type="number" name="lumpsum" id="lumpsum" min="0">
         </div>
-        <div class="form-group">
-            <button type="button" name="reset" id="reset">Reset</button><br><br>
+        <div class="button-row">
+            <button type="button" name="calulate" id="calulate">Calculate</button>
+            <button type="reset" name="reset" id="reset">Reset</button>
         </div>
+        <p id="inlineText" class="hidden-text"></p>
     </form>
-
+    <script type="module" src="/program/main.js"></script>
 </body>
 
 </html>

@@ -6,12 +6,33 @@
 
 .form-group label {
   width: 380px;
+  margin-bottom: 2rem;
+}
+
+.form-group select {
+  margin-bottom: 2rem;
 }
 
 .form-group input {
   flex: 0.1;
+  margin-bottom: 2rem;
+  display: flex;
+  flex-direction: column;
+
 }
 
 .hidden {
   display: none;
+}
+
+.hidden-text {
+  display: none;
+  margin-bottom: 2rem;
+}
+
+.button-row {
+  display: flex;
+  justify-content: flex-start;
+  gap: 310px;
+  margin-bottom: 30px;
 }

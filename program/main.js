@@ -1,4 +1,4 @@
-import promptSync from "prompt-sync";
+// import promptSync from "prompt-sync";
 import {
   isYesOrNo,
   inputValidationforSalary,
@@ -30,36 +30,51 @@ let basicSalary,
   grossSalary = 0,
   lumpsumTax = 0;
 
-const prompt = promptSync();
+
+document.getElementById('calulate').addEventListener('click', () => {
+
+    basicSalary = Number(document.getElementById('basic-salary').value);
+    allowance = Number(document.getElementById('allowance').value);
+    welfare = Number(document.getElementById('welfare').value);
+    lumpsumWithoutTax = Number(document.getElementById('lumpsum').value);
+
+
+    // 2. Perform your logic (example of using the imports)
+    // Replace this with your actual CLI calculation logic
+        if (userInputs()) {
+          calculations();
+        }
+});
+
+
 
 function userInputs() {
-  basicSalary = Number(
-    prompt("Enter the monthly basic salary" + "\t".repeat(4) + ": "),
-  );
+  // basicSalary = Number(
+  //   prompt("Enter the monthly basic salary" + "\t".repeat(4) + ": "),
+  // );
   if (!inputValidationforSalary(basicSalary)) {
     return;
   }
 
-  allowance = Number(
-    prompt("Enter Allowances(if applicable only)" + "\t".repeat(3) + ": "),
-  );
+  // allowance = Number(
+  //   prompt("Enter Allowances(if applicable only)" + "\t".repeat(3) + ": "),
+  // );
   if (!inputValidationforNumber(allowance)) {
     return;
   }
-  // basicSalary += allowance;
 
-  welfare = Number(
-    prompt("Enter any other contributions(societies/clubs/welfare) \t: "),
-  );
+  // welfare = Number(
+  //   prompt("Enter any other contributions(societies/clubs/welfare) \t: "),
+  // );
   if (!inputValidationforNumber(welfare)) {
     return;
   }
 
-  lumpsumEligibility = prompt(
-    `Are you eligible for a lump sum payment ? Type (Y/N) \t: `,
-  );
+  // lumpsumEligibility = prompt(
+  //   `Are you eligible for a lump sum payment ? Type (Y/N) \t: `,
+  // );
 
-  lumpsumWithoutTax = isYesOrNo(lumpsumEligibility);
+  // lumpsumWithoutTax = isYesOrNo(lumpsumEligibility);
   return true;
 }
 
@@ -97,6 +112,6 @@ function calculations() {
   printPaySlip(deductions);
 }
 
-if (userInputs()) {
-  calculations();
-}
+// if (userInputs()) {
+//   calculations();
+// }
