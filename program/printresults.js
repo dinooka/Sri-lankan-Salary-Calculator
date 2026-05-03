@@ -13,7 +13,6 @@ export function printPaySlip(results) {
     const value = num.toFixed(2);
     const alignedValue = value.padStart(valueColumnWidth);
     console.log(key.padEnd(width) + " = " + alignedValue);
-    // earningsDetails.innerText = `${key.padEnd(width)}  = ${alignedValue}`;
   }
 }
 
@@ -21,7 +20,7 @@ export function printPaySlipToHtml(results, title) {
   const container = document.getElementById("payslip");
 
   let sectionHTML = `
-    <h3>${title}</h3>
+    <h3 class="category">${title}</h3>
     <table>
   `;
 
