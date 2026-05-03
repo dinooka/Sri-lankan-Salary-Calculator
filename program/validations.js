@@ -1,6 +1,6 @@
 export function inputValidationforSalary(grossSalary) {
   if (grossSalary <= 0) {
-    console.log("Salary can't be a negative value!");
+    console.log("Salary has to be a positive value!");
     return false;
   } else if (!Number.isFinite(grossSalary)) {
     console.log("Salary has to be a numeric value!");

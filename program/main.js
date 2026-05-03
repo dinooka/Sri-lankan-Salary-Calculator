@@ -17,13 +17,12 @@ import {
 import { printPaySlip, printPaySlipToHtml } from "./printresults.js";
 
 const STAMP_DUTY = 25.0; // Govt. imposed
-const width = 35;
 let lumpsumEligibility,
   taxAmountForGrossSalary = 0,
   epf,
   grossSalary = 0,
-  lumpsumTax = 0;
-let basicSalary = 0,
+  lumpsumTax = 0,
+  basicSalary = 0,
   allowance = 0,
   welfare = 0,
   lumpsumWithoutTax = 0;
@@ -41,7 +40,6 @@ const container = document.getElementById("payslip");
 document.addEventListener("DOMContentLoaded", function () {
   inputs.forEach((input) => {
     input.addEventListener("keydown", function (e) {
-      // ✅ allow Ctrl/Cmd shortcuts (copy, paste, cut, select all)
       if (e.ctrlKey || e.metaKey) {
         return;
       }
@@ -57,16 +55,14 @@ document.addEventListener("DOMContentLoaded", function () {
       // allow digits
       if (/^\d$/.test(e.key)) return;
 
-      // allow ONE decimal point
+      // allow 1 decimal point
       if (e.key === "." && !this.value.includes(".")) return;
 
       e.preventDefault();
     });
-    // ✅ paste validation (ONLY allow valid numbers)
+    // paste validation (allow valid numbers)
     input.addEventListener("paste", function (e) {
       const pasteData = e.clipboardData.getData("text").trim();
-
-      // allow: 123, 123.45, 0.5
       const isValidNumber = /^\d+(\.\d+)?$/.test(pasteData);
 
       if (!isValidNumber) {
@@ -80,7 +76,6 @@ document.addEventListener("DOMContentLoaded", function () {
     allowance = Number(allowanceElement.value);
     welfare = Number(welfareElement.value);
     lumpsumWithoutTax = Number(lumpsumWithoutTaxElement.value);
-    console.log("Gross Salary = ", basicSalary);
     if (userInputs()) {
       calculations();
     }
@@ -91,15 +86,12 @@ function userInputs() {
   if (!inputValidationforSalary(basicSalary)) {
     return;
   }
-
   if (!inputValidationforNumber(allowance)) {
     return;
   }
-
   if (!inputValidationforNumber(welfare)) {
     return;
   }
-
   return true;
 }
 
@@ -121,7 +113,6 @@ function calculations() {
   };
 
   console.log("\nEARNINGS\n");
-  // earningsText.innerText = `\nEARNINGS\n`;
   printPaySlip(earnings);
   printPaySlipToHtml(earnings, "EARNINGS");
 
