@@ -1,7 +1,9 @@
+head,
 body {
   background-color: rgb(21, 107, 78);
   min-height: 100vh;
   margin: 0;
+  padding-top: 20px;
 }
 .intro {
   margin-left: 20px;
