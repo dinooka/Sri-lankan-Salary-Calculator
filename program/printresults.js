@@ -30,7 +30,7 @@ export function printPaySlipToHtml(results, title) {
     const value = num.toFixed(2);
     sectionHTML += `
       <tr>
-        <td>${key}</td>
+        <td class="row">${key}</td>
         <td class="amount">${value}</td>
       </tr>
     `;
