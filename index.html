@@ -5,80 +5,94 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Employee Salary Calculator</title>
     <link rel="stylesheet" href="styles.css" />
+    <meta
+      name="description"
+      content="Employee Salary Calculator for Sri lankans"
+    />
+    <meta name="keywords" content="employee Salary , tax rates, net salary" />
+    <meta name="author" content="Dinooka Wakista" />
+    <meta name="twitter:card" content="summary_large_image" />
   </head>
-
   <body>
-    <div class="intro">
-      <h2>Employee Monthly Salary Calculator</h2>
-      <h4>
-        Calculates net salary considering EPF and tax deductions on both monthly
-        salary and lump sum payments
-      </h4>
-    </div>
-    <script src="app.js" defer></script>
-    <form action="inputs" id="my-form">
-      <div class="form-group">
-        <label title="Gross Salary" for="Salary">Monthly basic salary</label>
-        <input
-          type="text"
-          class="numeric-only"
-          id="basic-salary"
-          maxlength="12"
-          min="0"
-          required
-        />
-        <span>(LKR)</span>
+    <main role="main">
+      <div class="intro">
+        <h2>Employee Monthly Salary Calculator</h2>
+        <h3>
+          Calculates net salary considering EPF and tax deductions on both
+          monthly salary and lump sum payments
+        </h3>
       </div>
-      <div class="form-group">
-        <label title="rentals/transport/Overtime" for="Salary"
-          >Allowances</label
-        >
-        <input
-          type="text"
-          class="numeric-only"
-          id="allowance"
-          min="0"
-          maxlength="12"
-        />
-        <span>(LKR)</span>
-      </div>
-      <div class="form-group">
-        <label for="Salary">Contributions(societies/clubs/welfare) </label>
-        <input
-          type="text"
-          class="numeric-only"
-          id="welfare"
-          min="0"
-          maxlength="12"
-        />
-        <span>(LKR)</span>
-      </div>
-      <div class="form-group">
-        <label title="bonus/incentive" for="confirmation"
-          >Are you qualified for a lump sum payment?(bonus/incentive)</label
-        >
-        <select name="confirmation" id="confirmation">
-          <option value="yes">Yes</option>
-          <option value="no" selected>No</option>
-        </select>
-      </div>
-      <div id="hidden-input" class="hidden">
-        <label title="bonus/incentive" for="Salary">Lump sum amount </label>
-        <input
-          type="text"
-          class="numeric-only"
-          id="lumpsum"
-          min="0"
-          maxlength="12"
-        />
-        <span>(LKR)</span>
-      </div>
-      <div class="button-row">
-        <button type="button" id="calulate">Calculate</button>
-        <button type="reset" id="reset">Reset</button>
-      </div>
-      <div id="payslip"></div>
-    </form>
+      <script src="app.js" defer></script>
+      <form action="inputs" id="my-form">
+        <div class="form-group">
+          <label title="Gross Salary" for="Salary">Monthly basic salary</label>
+          <input
+            type="text"
+            class="numeric-only"
+            id="basic-salary"
+            maxlength="12"
+            min="0"
+            required
+            aria-label="basic salary"
+          />
+          <span>(LKR)</span>
+        </div>
+        <div class="form-group">
+          <label title="rentals/transport/Overtime" for="Salary"
+            >Allowances</label
+          >
+          <input
+            type="text"
+            class="numeric-only"
+            id="allowance"
+            min="0"
+            maxlength="12"
+            aria-label="allowance"
+          />
+          <span>(LKR)</span>
+        </div>
+        <div class="form-group">
+          <label for="Salary">Contributions(societies/clubs/welfare) </label>
+          <input
+            type="text"
+            class="numeric-only"
+            id="welfare"
+            min="0"
+            maxlength="12"
+            aria-label="welfare"
+          />
+          <span>(LKR)</span>
+        </div>
+        <div class="form-group">
+          <label title="bonus/incentive" for="confirmation"
+            >Are you qualified for a lump sum payment?(bonus/incentive)</label
+          >
+          <select name="confirmation" id="confirmation">
+            <option value="yes">Yes</option>
+            <option value="no" selected>No</option>
+          </select>
+        </div>
+        <div id="hidden-input" class="hidden">
+          <label title="bonus/incentive" for="Salary">Lump sum amount </label>
+          <input
+            type="text"
+            class="numeric-only"
+            id="lumpsum"
+            aria-label="welfare"
+            min="0"
+            maxlength="12"
+          />
+          <span>(LKR)</span>
+        </div>
+        <div class="button-row">
+          <button type="button" id="calulate" aria-label="calulate">
+            Calculate
+          </button>
+          <button type="reset" id="reset" aria-label="reset">Reset</button>
+        </div>
+        <div id="payslip"></div>
+      </form>
+    </main>
     <script type="module" src="./program/main.js"></script>
   </body>
 </html>

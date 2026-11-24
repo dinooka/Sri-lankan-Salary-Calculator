@@ -1,6 +1,6 @@
 head,
 body {
-  background-color: rgb(21, 107, 78);
+  background-color: #fffdf7;
   min-height: 100vh;
   margin: 0;
   padding-top: 20px;
@@ -76,4 +76,62 @@ td {
 .amount {
   text-align: right;
   font-weight: bold;
+}
+
+/* Mobile */
+@media screen and (max-width: 768px) {
+  .intro {
+    margin-left: 10px;
+    margin-bottom: 2rem;
+  }
+  .form-group {
+    flex-direction: column;
+    align-items: stretch;
+    display: flex;
+  }
+
+  label {
+    width: 100%;
+  }
+
+  input {
+    width: 65%;
+    flex: 1;
+  }
+  select {
+    width: 25%;
+  }
+
+  .button-row {
+    gap: 50%;
+  }
+
+  .category {
+    margin-left: 20px;
+  }
+
+  table {
+    width: 55%;
+    max-width: 100px;
+    /* border-collapse: collapse; */
+    margin-bottom: 20px;
+    margin-left: 5%;
+    margin-right: 30%;
+    /* gap: 100%; */
+    padding: 0;
+  }
+
+  tr {
+    gap: 50%;
+  }
+
+  td {
+    padding: 8px 20px;
+    border-bottom: none;
+    gap: 50%;
+  }
+
+  .amount {
+    padding-left: 70px;
+  }
 }
